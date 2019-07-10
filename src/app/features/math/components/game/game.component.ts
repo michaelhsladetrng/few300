@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionModel } from '../../models';
+import { MathState, selectQuestionModel } from '../../reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -8,15 +11,12 @@ import { QuestionModel } from '../../models';
 })
 export class GameComponent implements OnInit {
 
-  model: QuestionModel = {
-    num: 3,
-    of: 10,
-    question: 'What is 2 * 2'
-  };
+  model$: Observable<QuestionModel>;
 
-  constructor() { }
+  constructor(private store: Store<MathState>) { }
 
   ngOnInit() {
+    this.model$ = this.store.select(selectQestionModel);
   }
 
 }
