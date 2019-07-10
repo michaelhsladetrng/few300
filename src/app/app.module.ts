@@ -17,8 +17,8 @@ import { MathModule } from './features/math/math.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MathModule
+    MathModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
