@@ -11,12 +11,19 @@ import { Observable } from 'rxjs';
 })
 export class GameComponent implements OnInit {
 
+
   model$: Observable<QuestionModel>;
 
   constructor(private store: Store<MathState>) { }
 
   ngOnInit() {
-    this.model$ = this.store.select(selectQestionModel);
+    this.model$ = this.store.select(selectQuestionModel);
   }
 
+  next(guessEl: HTMLInputElement) {
+    const guess = guessEl.valueAsNumber;
+    console.log('Would dispatch with this: ${guess}');
+    guessEl.value = '';
+    guessEl.focus();
+  }
 }
