@@ -18,7 +18,7 @@ import { MathModule } from './features/math/math.module';
   imports: [
     BrowserModule,
     MathModule,
-    AppRoutingModule
+    AppRoutingModule  // after any feature modules (particularly those with child routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
