@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionModel } from '../../models';
-import { MathState, selectQuestionModel } from '../../reducers';
+import { MathState, selectQuestionModel, selectAtEndOfQuestions } from '../../reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { answerProvided } from '../../actions/questions.actions';
 
 @Component({
   selector: 'app-game',
@@ -13,15 +14,18 @@ export class GameComponent implements OnInit {
 
 
   model$: Observable<QuestionModel>;
+  atEnd$: Observable<boolean>;
 
   constructor(private store: Store<MathState>) { }
 
   ngOnInit() {
     this.model$ = this.store.select(selectQuestionModel);
+    this.atEnd$ = this.store.select(selectAtEndOfQuestions);
   }
 
   next(guessEl: HTMLInputElement) {
     const guess = guessEl.valueAsNumber;
+    this.store.dispatch(answerProvided({ guess }));
     console.log('Would dispatch with this: ${guess}');
     guessEl.value = '';
     guessEl.focus();

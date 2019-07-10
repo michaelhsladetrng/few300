@@ -45,3 +45,9 @@ export const selectQuestionModel = createSelector(
     } as QuestionModel;
   }
 );
+
+export const selectAtEndOfQuestions = createSelector(
+  totalQuestions,
+  selectCurrentQuestionId,
+  (total, current) => total === current
+);

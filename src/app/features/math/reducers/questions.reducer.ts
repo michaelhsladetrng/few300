@@ -1,5 +1,6 @@
-import { Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import * as questionActions from '../actions/questions.actions';
 
 export interface QuestionEntity {
   id: number;
@@ -45,7 +46,12 @@ const initialState: MathQuestionsState = {
 
 export const adapter = createEntityAdapter<QuestionEntity>();
 
-export function reducer(state: MathQuestionsState = initialState,
-  action: Action): MathQuestionsState {
-  return state;
-}
+// export function reducer(state: MathQuestionsState = initialState,
+//   action: Action): MathQuestionsState {
+//   return state;
+// }
+
+export const reducer = createReducer(
+  initialState,
+  on(questionActions.answerProvided, (state, action) => ({ ...state, currentQuestionId: state.currentQuestionId + 1 }))
+);

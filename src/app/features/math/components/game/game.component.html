@@ -12,9 +12,15 @@
              id="answer">
     </div>
     <input type="button"
+           *ngIf="!(atEnd$ | async)"
            (click)="next(guess)"
            class="btn btn-primary"
            value="Next Question">
+    <input type="button"
+           *ngIf="(atEnd$ | async)"
+           (click)="next(guess)"
+           class="btn btn-success"
+           value="Finish Game">
     <!-- <a href="#"
        class="card-link">Next Question</a> -->
   </div>
