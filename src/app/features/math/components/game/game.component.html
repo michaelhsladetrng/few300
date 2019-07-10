@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Question 1 of 10</h5>
+    <h5 class="card-title">Question {{ model.num }} of {{ model.of }}</h5>
 
-    <p class="card-text">What is 10 + 2?</p>
+    <p class="card-text">{{ model.question }}?</p>
     <div class="form-group">
       <label for="answer">Answer:</label>
       <input class="form-control"
