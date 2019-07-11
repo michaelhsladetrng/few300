@@ -8,12 +8,16 @@ export interface QuestionEntity {
   answer: number;
 }
 
+interface MissedQuestions { id: number; providedAnswer: number; }
+
 export interface MathQuestionsState extends EntityState<QuestionEntity> {
   currentQuestionId: number;
+  missedQuestions: MissedQuestions[];
 }
 
 const initialState: MathQuestionsState = {
   currentQuestionId: 1,
+  missedQuestions: [],
   ids: [1, 2, 3, 4, 5],
   entities: {
     1: {
@@ -53,5 +57,16 @@ export const adapter = createEntityAdapter<QuestionEntity>();
 
 export const reducer = createReducer(
   initialState,
-  on(questionActions.answerProvided, (state, action) => ({ ...state, currentQuestionId: state.currentQuestionId + 1 }))
+  on(questionActions.answerProvided, (state, action) => {
+    // { ...state, currentQuestionId: state.currentQuestionId + 1 }
+
+    let tempState = { ...state };  // shallow copy of state to a temp var
+    const currentQuestion = state.entities[state.currentQuestionId];
+    if (action.guess !== currentQuestion.answer) {
+      tempState = { ...tempState, missedQuestions: [...state.missedQuestions, { id: currentQuestion.id, providedAnswer: action.guess }] };
+    }
+    const newState = ({ ...tempState, currentQuestionId: state.currentQuestionId + 1 });
+
+    return newState;
+  })
 );

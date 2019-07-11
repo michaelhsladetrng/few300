@@ -21,7 +21,7 @@ const selectQuestionsBranch = createSelector(selectMathFeature, m => m.questions
 
 // 3. Selectors that are "helpers" to get the data you need for step 4.
 const selectCurrentQuestionId = createSelector(selectQuestionsBranch, q => q.currentQuestionId);
-const { selectTotal: totalQuestions,
+const { selectTotal: selectTotalNumberofQuestions,
   selectEntities: selectQuestionEntities } = fromQuestions.adapter.getSelectors(selectQuestionsBranch);
 
 const selectSelectedQuestion = createSelector(
@@ -35,7 +35,7 @@ const selectSelectedQuestion = createSelector(
 // current id, how many toal, question for the current question
 
 export const selectQuestionModel = createSelector(
-  totalQuestions,
+  selectTotalNumberofQuestions,
   selectSelectedQuestion,
   (total, selected) => {
     return {
@@ -47,7 +47,7 @@ export const selectQuestionModel = createSelector(
 );
 
 export const selectAtEndOfQuestions = createSelector(
-  totalQuestions,
+  selectTotalNumberofQuestions,
   selectCurrentQuestionId,
   (total, current) => total === current
 );
