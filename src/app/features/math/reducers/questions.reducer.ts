@@ -2,6 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import * as questionActions from '../actions/questions.actions';
 import { tassign } from 'tassign';
+import { MathState } from '.';
 
 export interface QuestionEntity {
   id: number;
@@ -56,7 +57,7 @@ export const adapter = createEntityAdapter<QuestionEntity>();
 //   return state;
 // }
 
-export const reducer = createReducer(
+const mathReducer = createReducer(
   initialState,
   on(questionActions.playAgain, () => initialState),
   on(questionActions.answerProvided, (state, action) => {
@@ -73,3 +74,7 @@ export const reducer = createReducer(
     return newState;
   })
 );
+
+export function reducer(state: MathQuestionsState | undefined, action: Action) {
+  return mathReducer(state, action);
+}
