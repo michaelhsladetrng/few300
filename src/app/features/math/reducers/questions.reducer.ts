@@ -57,6 +57,7 @@ export const adapter = createEntityAdapter<QuestionEntity>();
 
 export const reducer = createReducer(
   initialState,
+  on(questionActions.playAgain, () => initialState),
   on(questionActions.answerProvided, (state, action) => {
     // { ...state, currentQuestionId: state.currentQuestionId + 1 }
 

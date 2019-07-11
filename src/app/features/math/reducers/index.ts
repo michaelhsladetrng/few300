@@ -51,3 +51,7 @@ export const selectAtEndOfQuestions = createSelector(
   selectCurrentQuestionId,
   (total, current) => total === current
 );
+
+export const selectGameOverMan = createSelector(
+  selectQuestionsBranch, q => q.missedQuestions.length === 3
+);
