@@ -4,13 +4,13 @@
   and you got {{ scoresModel.numberWrong }} wrong.
 </p>
 
-<ul class='list-unstyled'>
+<ul class="list-unstyled">
   <li *ngFor="let score of scoresModel.scores">
     <p>Question {{ score.num }} was
       {{ score.question }}. The right answer was
-      {{ score.answer}}.
+      {{ score.answer }}.
       <span *ngIf="score.incorrect">
-        You got it wrong. You said {{ score.providerAnswer }}>
+        You got it wrong. You said {{ score.providedAnswer}}.
         <em>Duh!</em>
       </span>
     </p>
