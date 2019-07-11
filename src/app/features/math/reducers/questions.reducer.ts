@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import * as questionActions from '../actions/questions.actions';
+import { tassign } from 'tassign';
 
 export interface QuestionEntity {
   id: number;
@@ -66,7 +67,8 @@ export const reducer = createReducer(
     if (action.guess !== currentQuestion.answer) {
       tempState = { ...tempState, missedQuestions: [...state.missedQuestions, { id: currentQuestion.id, providedAnswer: action.guess }] };
     }
-    const newState = ({ ...tempState, currentQuestionId: state.currentQuestionId + 1 });
+    // const newState = ({ ...tempState, currentQuestionId: state.currentQuestionId + 1 });
+    const newState = tassign(tempState, { currentQuestionId: state.currentQuestionId + 1 });
 
     return newState;
   })
