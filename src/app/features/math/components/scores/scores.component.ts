@@ -4,6 +4,7 @@ import { ScoresModel } from '../../models';
 import { Store } from '@ngrx/store';
 import { MathState, selectScoresModel } from '../../reducers';
 import { Router } from '@angular/router';
+import { playAgain } from '../../actions/questions.actions';
 
 @Component({
   selector: 'app-scores',
@@ -20,6 +21,7 @@ export class ScoresComponent implements OnInit {
   }
 
   playAgain(guessEl: HTMLInputElement) {
+    this.store.dispatch(playAgain());
     this.router.navigate(['math', 'game']);
   }
 }
