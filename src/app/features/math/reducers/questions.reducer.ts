@@ -75,6 +75,8 @@ const mathReducer = createReducer(
   })
 );
 
+// Note: we have to do this becuase the ng AOT compiler cannot import from the result of a function call
+// so we export instead a function that calls our function.
 export function reducer(state: MathQuestionsState | undefined, action: Action) {
   return mathReducer(state, action);
 }
