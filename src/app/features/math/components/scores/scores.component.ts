@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ScoresModel } from '../../models';
 import { Store } from '@ngrx/store';
 import { MathState, selectScoresModel } from '../../reducers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scores',
@@ -12,10 +13,13 @@ import { MathState, selectScoresModel } from '../../reducers';
 export class ScoresComponent implements OnInit {
   scoresModel$: Observable<ScoresModel>;
 
-  constructor(private store: Store<MathState>) { }
+  constructor(private store: Store<MathState>, private router: Router) { }
 
   ngOnInit() {
     this.scoresModel$ = this.store.select(selectScoresModel);
   }
 
+  playAgain(guessEl: HTMLInputElement) {
+    this.router.navigate(['math', 'game']);
+  }
 }
