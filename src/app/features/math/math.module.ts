@@ -10,7 +10,7 @@ import { ScoreListComponent } from './components/score-list/score-list.component
 import { GameOverGuard } from './guards/game-over.guard';
 import { SavedScoresComponent } from './components/saved-scores/saved-scores.component';
 import { EffectsModule } from '@ngrx/effects';
-import { SavedScoresEffects } from './efftects/saved-scores.effects';
+import { SavedScoresEffects } from './effects/saved-scores.effects';
 
 const routes: Routes = [
   {
