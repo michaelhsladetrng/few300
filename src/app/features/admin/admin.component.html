@@ -1,0 +1,30 @@
+<div>
+  <input [formControl]="nickName">
+</div>
+<h1>{{ nickName.value }}</h1>
+
+<input type="button"
+       value="make It Bigger!"
+       (click)="doIt()">
+
+
+<form [formGroup]="personalInformationGroup"
+      (ngSubmit)="saveIt()">
+  <fieldset>
+    <legend>Personal Information</legend>
+    <div class="form-group">
+      <label for="firstName">
+        First Name
+      </label>
+      <input name="firstName"
+             id="firstName"
+             class="form-control">
+      <label for="lastName">
+        Last Name
+      </label>
+      <input name="lastName"
+             id="lastName"
+             class="form-control">
+    </div>
+  </fieldset>
+</form>
