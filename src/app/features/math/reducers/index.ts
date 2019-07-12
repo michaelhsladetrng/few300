@@ -1,15 +1,18 @@
 export const featureName = 'mathFeature';
 import * as fromQuestions from './questions.reducer';
+import * as fromSavedScores from './saved-scores.reducer';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { QuestionModel, ScoresModel } from '../models';
 
 export interface MathState {
   questions: fromQuestions.MathQuestionsState;
+  savedScores: fromSavedScores.SavedScoresState;
 }
 
 export const reducers = {
-  questions: fromQuestions.reducer
+  questions: fromQuestions.reducer,
+  savedScores: fromSavedScores.savedScoresReducer
 };
 
 
@@ -18,12 +21,15 @@ const selectMathFeature = createFeatureSelector<MathState>(featureName);
 
 // 2. Create a selector for each "branch" of the MathState (e.g., questions)
 const selectQuestionsBranch = createSelector(selectMathFeature, m => m.questions);
+const selectSavedScoresBranch = createSelector(selectMathFeature, m => m.savedScores);
 
 // 3. Selectors that are "helpers" to get the data you need for step 4.
 const selectCurrentQuestionId = createSelector(selectQuestionsBranch, q => q.currentQuestionId);
 const { selectTotal: selectTotalNumberofQuestions,
   selectAll: selectAllQuestions,
   selectEntities: selectQuestionEntities } = fromQuestions.adapter.getSelectors(selectQuestionsBranch);
+
+const { selectAll: selectAllSavedScores } = fromSavedScores.adapter.getSelectors(selectSavedScoresBranch);
 
 const selectSelectedQuestion = createSelector(
   selectQuestionEntities,
@@ -32,6 +38,9 @@ const selectSelectedQuestion = createSelector(
 );
 
 // 4. create a selector for each component model
+
+export const selectSavedScoresModel = createSelector( selectAllSavedScores, s => s );
+
 // TODO create a selector that returns QuestionModel
 // current id, how many toal, question for the current question
 

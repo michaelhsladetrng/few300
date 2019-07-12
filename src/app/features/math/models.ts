@@ -19,3 +19,11 @@ interface ScoreLineModel {
   incorrect: boolean;
   providedAnswer: number;
 }
+
+export interface SavedScoresModel {
+  id: number;
+  who: string;
+  right: number;
+  wrong: number;
+  when: string;
+}

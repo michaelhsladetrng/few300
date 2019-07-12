@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { SavedScoresModel } from '../../models';
+import { Observable } from 'rxjs';
+import { MathState, selectSavedScoresModel } from '../../reducers';
+import { Store } from '@ngrx/store';
+import { loadSavedScores } from '../../actions/saved-scores.actions';
 
 @Component({
   selector: 'app-saved-scores',
@@ -7,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SavedScoresComponent implements OnInit {
 
-  constructor() { }
+  model$: Observable<SavedScoresModel []>;
+
+  constructor(private store: Store<MathState>) { }
 
   ngOnInit() {
+    this.store.dispatch(loadSavedScores());
+    this.model$ = this.store.select(selectSavedScoresModel);
   }
 
 }
