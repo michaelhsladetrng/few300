@@ -5,6 +5,7 @@
          [routerLinkActive]="['active']"
          [routerLink]="['game']">Game</a>
       <a class="nav-link"
+         [hidden]="(hideScores$ | async )"
          [routerLinkActive]="['active']"
          [routerLink]="['scores']">Scores</a>
     </nav>

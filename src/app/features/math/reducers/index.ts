@@ -95,3 +95,13 @@ export const selectScoresModel = createSelector(
     return result;
   }
 );
+
+export const selectHideScores = createSelector(
+  selectTotalNumberofQuestions,
+  selectCurrentQuestionId,
+  (total, current) => (total + 1) !== current
+);
+
+export const selectHideGame = createSelector(
+  selectHideScores, (x) => !x
+);
