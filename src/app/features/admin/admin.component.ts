@@ -11,8 +11,9 @@ export class AdminComponent implements OnInit {
 
   nickName = new FormControl();
 
+ 
   personalInformationGroup = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+    firstName: new FormControl('', [Validators.required, Validators.maxLength(5)]),
     lastName: new FormControl('')
   });
 
@@ -25,7 +26,12 @@ export class AdminComponent implements OnInit {
     this.nickName.setValue("HUGE!!");
   }
 
+  get firstName() {
+    return this.personalInformationGroup.get('firstName');
+  }
+
   saveIt() {
     console.log('Saving:', this.personalInformationGroup.value);
+    this.personalInformationGroup.reset();
   }
-}
+} 
