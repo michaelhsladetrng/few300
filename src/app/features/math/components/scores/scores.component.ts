@@ -20,7 +20,7 @@ export class ScoresComponent implements OnInit {
     this.scoresModel$ = this.store.select(selectScoresModel);
   }
 
-  playAgain(guessEl: HTMLInputElement) {
+  playAgain() {
     this.store.dispatch(playAgain());
     this.router.navigate(['math', 'game']);
   }
