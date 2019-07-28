@@ -11,7 +11,7 @@ const initialState: UiHintsState = {
 };
 
 export function reducer( state: UiHintsState = initialState, action: Action ) {
-  switch(action.type) {
+  switch (action.type) {
 
     case '[math] save scored failed': {
       return {
