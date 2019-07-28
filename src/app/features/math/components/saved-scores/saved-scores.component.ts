@@ -12,7 +12,7 @@ import { loadSavedScores } from '../../actions/saved-scores.actions';
 })
 export class SavedScoresComponent implements OnInit {
 
-  model$: Observable<SavedScoresModel []>;
+  model$: Observable<SavedScoresModel[]>;
 
   constructor(private store: Store<MathState>) { }
 

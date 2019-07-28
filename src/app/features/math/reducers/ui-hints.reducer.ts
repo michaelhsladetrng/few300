@@ -8,7 +8,7 @@ export interface UiHintsState {
 const initialState: UiHintsState = {
   hasError: false,
   errorMessage: ''
-}
+};
 
 export function reducer( state: UiHintsState = initialState, action: Action ) {
   switch(action.type) {

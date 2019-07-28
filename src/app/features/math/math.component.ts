@@ -17,7 +17,7 @@ export class MathComponent implements OnInit {
 
   ngOnInit() {
     this.hideScores$ = this.store.select(selectHideScores);
-    this.store.dispatch(loadSavedScores);
+    this.store.dispatch(loadSavedScores());
   }
 
 }
