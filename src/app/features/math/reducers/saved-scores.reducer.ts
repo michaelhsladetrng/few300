@@ -23,7 +23,8 @@ const reducer = createReducer(
     const tempState = adapter.removeOne(action.oldId, state);
     return adapter.addOne(action.newScore, tempState);
   }),
-  on(actions.saveScoreFailed, (state, action) => adapter.removeOne(action.id, state))
+  on(actions.saveScoreFailed, (state, action) => adapter.removeOne(action.id, state)),
+  on(actions.dismissError, (state, action) => adapter.removeOne(action.id, state))
 );
 
 export function savedScoresReducer(state: SavedScoresState | undefined, action: Action) {

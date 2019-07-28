@@ -36,3 +36,8 @@ export const saveScoreSucceeded = createAction(
   '[math] save score succeeded',
   props<{ oldId: number, newScore: SavedScoreModel }>()
 );
+
+export const dismissError = createAction(
+  '[math] dismiss error',
+  props<{ id: number, reason: string }>()
+);

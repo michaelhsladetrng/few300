@@ -10,10 +10,16 @@ const initialState: UiHintsState = {
   errorMessage: ''
 };
 
-export function reducer( state: UiHintsState = initialState, action: Action ) {
+export function reducer(state: UiHintsState = initialState, action: Action) {
   switch (action.type) {
 
-    case '[math] save scored failed': {
+    case '[math] dismiss error': {
+      return {
+        hasError: false,
+        errorMessage: ''
+      };
+    }
+     case '[math] save scored failed': {
       return {
         hasError: true,
         errorMessage: 'Could not save scores. Sorry, Jill. Quit Cheating!'

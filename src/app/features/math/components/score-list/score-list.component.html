@@ -8,15 +8,15 @@
   <li *ngFor="let score of scoresModel.scores">
     <div class="alert"
          [ngClass]="{'alert-success': !score.incorrect, 'alert-danger': score.incorrect}">
-    <p>Question {{ score.num }} was
-      {{ score.question }}. The right answer was
-      {{ score.answer }}.
+      <p>Question {{ score.num }} was
+        {{ score.question }}. The right answer was
+        {{ score.answer }}.
         <span *ngIf="!score.incorrect">Wow! You got that right!</span>
-      <span *ngIf="score.incorrect">
-        You got it wrong. You said {{ score.providedAnswer}}.
-        <em>Duh!</em>
-      </span>
-    </p>
+        <span *ngIf="score.incorrect">
+          You got it wrong. You said {{ score.providedAnswer}}.
+          <em>Duh!</em>
+        </span>
+      </p>
     </div>
   </li>
 </ul>
@@ -25,3 +25,14 @@
        class="btn btn-primary"
        (click)="saveScores()"
        value="Save Your Scores">
+<div *ngIf="uiHasError$ | async"
+     class="alert"
+     [ngClass]="{'alert-danger': this.showError}">
+  <p>Error: {{ uiHints.errorMessage }} </p>
+  <input type="button"
+         class="btn btn-primary"
+         (click)="dimissError()"
+         value="Dismiss Error" />
+</div>
+<!-- <pre>{{ (uiHints) | json }}</pre> -->
+<!-- <pre>{{ (uiHints1$ | async ) | json }}</pre> -->

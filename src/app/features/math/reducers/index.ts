@@ -25,6 +25,7 @@ const selectMathFeature = createFeatureSelector<MathState>(featureName);
 // 2. Create a selector for each "branch" of the MathState (e.g., questions)
 const selectQuestionsBranch = createSelector(selectMathFeature, m => m.questions);
 const selectSavedScoresBranch = createSelector(selectMathFeature, m => m.savedScores);
+const selectUiHintsBranch = createSelector(selectMathFeature, m => m.ui);
 
 // 3. Selectors that are "helpers" to get the data you need for step 4.
 const selectCurrentQuestionId = createSelector(selectQuestionsBranch, q => q.currentQuestionId);
@@ -42,7 +43,11 @@ const selectSelectedQuestion = createSelector(
 
 // 4. create a selector for each component model
 
-export const selectSavedScoresModel = createSelector( selectAllSavedScores, s => s );
+export const selectUiHints = createSelector(selectUiHintsBranch, u => u);
+export const selectUiHintsHasError = createSelector(selectUiHintsBranch, u => u.hasError);
+export const selectUiHintsErrorMessage = createSelector(selectUiHintsBranch, u => u.errorMessage);
+
+export const selectSavedScoresModel = createSelector(selectAllSavedScores, s => s);
 
 // TODO create a selector that returns QuestionModel
 // current id, how many toal, question for the current question

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionModel } from '../../models';
-import { MathState, selectQuestionModel, selectAtEndOfQuestions, selectGameOverMan } from '../../reducers';
+import { MathState, selectQuestionModel, selectAtEndOfQuestions, selectGameOverMan, selectUiHints } from '../../reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { answerProvided, playAgain } from '../../actions/questions.actions';
 import { Router } from '@angular/router';
+import { UiHintsState } from '../../reducers/ui-hints.reducer';
 
 @Component({
   selector: 'app-game',
@@ -17,7 +18,7 @@ export class GameComponent implements OnInit {
   model$: Observable<QuestionModel>;
   atEnd$: Observable<boolean>;
   gameOver$: Observable<boolean>;
-
+ 
   constructor(private store: Store<MathState>, private router: Router) { }
 
   ngOnInit() {
