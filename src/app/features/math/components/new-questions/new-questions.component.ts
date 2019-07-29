@@ -13,7 +13,7 @@ import { addQuestion } from '../../actions/questions.actions';
 export class NewQuestionsComponent implements OnInit {
 
   newQuestionGroup = new FormGroup({
-    question: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+    question: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]),
     answer: new FormControl('', [Validators.required ])
   });
 

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-let currentTempId = 99;
+let currentTempId = 6;
 
 export const answerProvided = createAction(
   '[math] answer provided',
