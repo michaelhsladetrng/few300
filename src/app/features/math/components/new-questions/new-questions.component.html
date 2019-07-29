@@ -1,0 +1,38 @@
+<form [formGroup]="newQuestionGroup"
+      (ngSubmit)="saveIt()">
+  <fieldset>
+    <legend>Add New Question:</legend>
+    <div class="form-group">
+      <label for="question">
+        Question
+      </label>
+      <input name="question"
+             id="question"
+             formControlName="question"
+             class="form-control">
+      <div class="alert alert-danger"
+           *ngIf="question.invalid && (question.dirty || question.touched)">
+        <span *ngIf="question.errors.required">This is required</span>
+        <span *ngIf="question.errors.maxlength">This is too long! It should be
+          {{ question.errors.maxlength.requiredLength }} or less.</span>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="answer">
+        Answer
+      </label>
+      <input type="number"
+             name="answer"
+             id="answer"
+             formControlName="answer"
+             class="form-control">
+    </div>
+  </fieldset>
+  <input type="submit"
+         [disabled]="newQuestionGroup.invalid"
+         value="Add Question"
+         class="btn btn-primary">
+</form>
+
+<pre> {{ newQuestionGroup.status | json }}</pre>

@@ -11,6 +11,8 @@ import { GameOverGuard } from './guards/game-over.guard';
 import { SavedScoresComponent } from './components/saved-scores/saved-scores.component';
 import { EffectsModule } from '@ngrx/effects';
 import { SavedScoresEffects } from './effects/saved-scores.effects';
+import { NewQuestionsComponent } from './components/new-questions/new-questions.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -32,18 +34,23 @@ const routes: Routes = [
       {
         path: 'saved-scores',
         component: SavedScoresComponent
+      },
+      {
+        path: 'new-question',
+        component: NewQuestionsComponent
       }
-    ]
+   ]
   }
 ];
 
 @NgModule({
-  declarations: [MathComponent, GameComponent, ScoresComponent, ScoreListComponent, SavedScoresComponent],
+  declarations: [MathComponent, GameComponent, ScoresComponent, ScoreListComponent, SavedScoresComponent, NewQuestionsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([SavedScoresEffects])
+    EffectsModule.forFeature([SavedScoresEffects]),
+    ReactiveFormsModule
   ]
 })
 export class MathModule { }
