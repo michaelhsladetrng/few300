@@ -60,6 +60,7 @@ export const adapter = createEntityAdapter<QuestionEntity>();
 const mathReducer = createReducer(
   initialState,
   on(questionActions.playAgain, () => initialState),
+  on(questionActions.addQuestion, (state, { entity }) => adapter.addOne(entity, state)),
   on(questionActions.answerProvided, (state, action) => {
     // { ...state, currentQuestionId: state.currentQuestionId + 1 }
 

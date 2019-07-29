@@ -47,6 +47,8 @@ export const selectUiHints = createSelector(selectUiHintsBranch, u => u);
 export const selectUiHintsHasError = createSelector(selectUiHintsBranch, u => u.hasError);
 export const selectUiHintsErrorMessage = createSelector(selectUiHintsBranch, u => u.errorMessage);
 
+export const selectQuestions = createSelector(selectQuestionsBranch, q => q );
+
 export const selectSavedScoresModel = createSelector(selectAllSavedScores, s => s);
 
 // TODO create a selector that returns QuestionModel
